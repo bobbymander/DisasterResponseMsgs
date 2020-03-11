@@ -7,7 +7,7 @@ emergency personnel can act on them as needed.  We will use NLP techniques along
 classification using pipelines and grid search to accomplish this.
 
 ## Data
-The data for this project can be found below.  There are 2 datasets, one for dogs and one for human faces.
+The data for this project can be found below.  There are 2 datasets, one for messages and one for categories.
 
 Messages:	https://github.com/bobbymander/DisasterResponseMsgs/blob/master/data/disaster_messages.csv
 Categories:	https://github.com/bobbymander/DisasterResponseMsgs/blob/master/data/disaster_categories.csv
@@ -18,6 +18,23 @@ app/run.py:  Used to run the Flask web app along with go.html and master.html
 data/process_data.py:  Used to load and process the datasets described above
 models/train_classifier.py:  Used to load the cleaned data, train a model with it using NLP and machine learning, and to evaluate the results
 
+## Design
+
+The ETL phase will involve:
+    1.  Merging the 2 datasets into 1 table.
+	2.  Converting categories into individual columns.
+	3.  Removing duplicates and NaN's.
+
+The NLP processing will involve:
+    1.  Converting to lowercase and removing punctuation.
+	2.  Tokenizing the text into words.
+	3.  Finding the root tokens of words using lemmatization.
+	
+The machine learning model building stage will involve:
+    1.  Creating a pipeline that includes a CountVectorizer, TD-IDF transformer, and MultiOutputClassifier with RandomForestClassifier.
+	2.  Creating a grid search for the above pipeline varying some parameters to find the best performance.
+	3.  Saving the model later for use by our web app.
+	
 ## Setup
 1. Run the following commands in the project's root directory to set up your database and model.
 
