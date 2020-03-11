@@ -15,6 +15,15 @@ from sqlalchemy import create_engine
 app = Flask(__name__)
 
 def tokenize(text):
+    """Extract the tokens from the text string provided.
+
+    Parameters:
+    text (str): Text message to tokenize
+
+    Returns:
+    tokens (array[str]): Array of token strings extracted from text
+
+    """
     tokens = word_tokenize(text)
     lemmatizer = WordNetLemmatizer()
 
@@ -37,12 +46,13 @@ model = joblib.load("../models/classifier.pkl")
 @app.route('/')
 @app.route('/index')
 def index():
-    
+        
     # extract data needed for visuals
     # TODO: Below is an example - modify to extract data for your own visuals
     genre_counts = df.groupby('genre').count()['message']
     genre_names = list(genre_counts.index)
     
+    # add a visual for the breakdown of request vs non-request counts
     request_counts = df.groupby('request').count()['message']
     request_names = list(request_counts.index)
     
@@ -67,6 +77,8 @@ def index():
                 }
             }
         },
+        
+        # add a visual for request counts
         {
             'data': [
                 Bar(
