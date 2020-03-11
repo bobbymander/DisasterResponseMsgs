@@ -47,7 +47,15 @@ def build_model():
             ('moc', MultiOutputClassifier(RandomForestClassifier()))
         ])
     
-    return pipeline
+    parameters = {
+        'vect__ngram_range': ((1, 1), (1, 2)),
+        'tfidf__use_idf': (True, False),
+        'moc__estimator__n_estimators': [10, 20],
+    }
+
+    cv = GridSearchCV(pipeline, param_grid=parameters, verbose=10, n_jobs=-1)
+    
+    return cv
 
 def evaluate_model(model, X_test, Y_test, category_names):
     y_pred = model.predict(X_test)

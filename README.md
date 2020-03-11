@@ -9,8 +9,14 @@ classification using pipelines and grid search to accomplish this.
 ## Data
 The data for this project can be found below.  There are 2 datasets, one for dogs and one for human faces.
 
-Messages:  
-Categories:  
+Messages:	https://github.com/bobbymander/DisasterResponseMsgs/blob/master/data/disaster_messages.csv
+Categories:	https://github.com/bobbymander/DisasterResponseMsgs/blob/master/data/disaster_categories.csv
+
+## Files
+
+app/run.py:  Used to run the Flask web app along with go.html and master.html
+data/process_data.py:  Used to load and process the datasets described above
+models/train_classifier.py:  Used to load the cleaned data, train a model with it using NLP and machine learning, and to evaluate the results
 
 ## Setup
 1. Run the following commands in the project's root directory to set up your database and model.
